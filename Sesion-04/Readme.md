@@ -53,25 +53,36 @@ La regresión tiene un montón de aplicaciones en varias áreas, por ejemplo:
 
 ![rain](imgassets/rain.gif)
 
+**y = mx + b**
+ - y es la variable por predecir
+ - x es la variable independiente
+ - m es el peso que se le da a cada valor de x
+ - b es el ajuste al total
+
 Para entender cómo es que puede aplicarse a áreas tan dispares sin tantos problemas, es importante enteder la estructura del regresor, para ello veamos el siguiente diagrama: 
 
 ![Regressor](imgassets/regressor1.png)
 
 Un regresor lineal recibe de entrada los datos que tu desees, y obtiene de salida algún dato que te interesa saber. Para mapear de una (o varias entradas) a una determinada salida, hay que ajustar los pesos sinápticos (marcados como pesos) y un valor llamado "bias" (que permite ajustar la línea).
 
-Entonces, para obtener una herramienta que te ayude a predecir de un dato a partir de otros, lo que tienes que obtener son los pesos sinápticos correctos. El primer paso para obtener los pesos sinápticos consiste en saber qué tan equivocados estamos. Cuando sepamos eso, podemos corregir los pesos sinápticos como un descenso en gradiente. 
+Entonces, para obtener una herramienta que te ayude a predecir de un dato a partir de otros, lo que tienes que obtener son los pesos sinápticos correctos. El primer paso para obtener los pesos sinápticos consiste en saber qué tan equivocados estamos. Cuando sepamos eso, podemos corregir los pesos sinápticos como un descenso en gradiente.
 
 ## Errores y ajustes de pesos sinápticos
 
 Cuando hacemos la tarea de clasificación, utilizamos positivos verdaderos, negativos verdaderos, falsos positivos y falsos negativos. Sin embargo, eso es útil en clasificación, mas no en predicción. 
 
-Para calcular qué tan bueno es un predictor como el regresor lineal no utilizamos el accuracy, sino una medición llamada *Error cuadrático medio* o MSE por sus siglas en inglés (Mean Square Error). 
+Para calcular qué tan bueno es un predictor como el regresor lineal no utilizamos el accuracy, sino una medición llamada *Error cuadrático medio* o MSE por sus siglas en inglés (Mean Square Error).
 
-Si bien es cierto que utiliza una fórmula matemática, no debes temerle a ella, porque es bastante simple de entender. Si tienes **n** datos y para cada uno tienes una salida **y predicha** y una salida **y esperada**, el error cuadrático medio se calcula con: 
+Si bien es cierto que utiliza una fórmula matemática, no debes temerle a ella, porque es bastante simple de entender. Si tienes **n** datos y para cada uno tienes una salida **y predicha** y una salida **y esperada**, el error cuadrático medio se calcula con:
+
+1 sobre n (promedio de todos los errores) por la suma de todos los errores de todas las salidas
+
+- yi pred. Resultado que arrojó el modelo en el punto i
+- yi esp. La etiqueta que tiene ese mismo punto i, el verdadero, el esperado.
 
 ![Mean Square Error](imgassets/mse.png)
 
-La razón de utilizar la función de MSE es que es derivable: recordemos que las derivadas también son un indicador de qué tanto debe ajustarse un valor para acercarse al óptimo: Una derivada muy grande significa que hay que hacer un ajsute muy grande, y una derivada pequeña significa que deben hacerse ajustes pequeños. Si la derivada es 0, quiere decir que la predicción y lo obtenido son perfectos. 
+La razón de utilizar la función de MSE es que es derivable: recordemos que las derivadas también son un indicador de qué tanto debe ajustarse un valor para acercarse al óptimo: Una derivada muy grande significa que hay que hacer un ajsute muy grande, y una derivada pequeña significa que deben hacerse ajustes pequeños. Si la derivada es 0, quiere decir que la predicción y lo obtenido son perfectos.
 
 Entonces, lo primero que necesitamos es obtener la salida predicha **y pred**. Ésta se obtiene multiplicando los pesos **w** con las entradas **x** y sumándolas todas juntas con el bias **b**:
 
@@ -127,16 +138,23 @@ La solución del reto 01 se encuentra [aquí.](Reto01/Reto01.ipynb)
 
 ## Regresión polinomial
 
-Hasta ahora hemos visto lo que pasa cuando tienes datos que se comportan como una línea recta. Pero ¿qué pasa cuando tienes datos que se curvean? 
+
+Hasta ahora hemos visto lo que pasa cuando tienes datos que se comportan como una línea recta. Pero ¿qué pasa cuando tienes datos que se curvean?
 ![curveddata](imgassets/curveddata.png)
 
 Si en un plot observas un patrón curvo, quizás requieres que tu regresor se curve igualmente y para ello construiremos un regresor polinomial. Un regresor lineal tendrá muchos errores, pero un regresor polinomial de más grados (grado 2, la línea en color verde o grado 3, la línea en color morado) podría tener mejor apego a tus datos.
+
+- Polinomio de grado 1. Moldea una recta
+- Polinomio de grado 2. Moldea una curva
+- Polinomio de grado 3. Moldea eses (s), más curvas
 
 ![polynomial](imgassets/polyregressors.png)
 
 Así es como se ve un polinomino de primer, segundo y tercer grado. Como se puede notar, las líneas se adaptan mejor y el error se reduce. Pero es importante notar que subir el grado del polinomio también conlleva sus costos: No siempre un polinomio de mayor grado puede ser lo mejor para un problema, a veces el grado del polinomio elevado hace mas mal que bien.
 
 Para ejemplificar esto, veamos [el siguiente cuaderno.](Ejemplo02/Ejemplo02.ipynb) Y con base en el ejemplo, hagamos el siguiente reto.
+
+No por tener un polinomio con más grados significa que tendrá mejor representación.
 
 ## Reto 02:
 >Edita el polinomio y revisa cómo afecta las predicciones. Nota cómo un polinomio muy elevado sobre-entrenará al regresor y fallará, mientras que un polinomio muy pequeño podría no acercarse tanto a los puntos.
@@ -167,11 +185,13 @@ Para ello tienes que transformar los datos de tu serie de tiempo en entradas par
 
 ![timeseriesinput](imgassets/inputstimeseries.png)
 
-Una vez transformada la conexión de serie de tiempo a datos de entrada, puedes mapear los datos de la siguiente manera: 
+Con 9 datos se creó una base datos con 3 columnas y 6 filas para poder llegar a predicir una 7a fila con un valor futuro 10.
+
+Una vez transformada la conexión de serie de tiempo a datos de entrada, puedes mapear los datos de la siguiente manera:
 
 ![timeseriesregressor](imgassets/timeseriesregressor1.png)
 
-Puedes ver el código que genera estos pasos en [el siguiente ejemplo](Ejemplo03/Ejemplo03.ipynb) y puedes utilizarlo para mejorar las predicciones en el siguiente reto. 
+Puedes ver el código que genera estos pasos en [el siguiente ejemplo](Ejemplo03/Ejemplo03.ipynb) y puedes utilizarlo para mejorar las predicciones en el siguiente reto.
 
 ## Reto 03:
 >![gypsy2](imgassets/gypsy2.gif)Con lo aprendido en la sesión, intenta mejorar las predicciones. Intenta con más (o menos) datos de entrada, más (o menos) datos de entrenamiento y grados polinomiales en lugar de datos lineales. 
