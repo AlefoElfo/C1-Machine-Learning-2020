@@ -91,7 +91,7 @@ El algoritmo de K-medias solamente clasifica, pero es nuestro deber interpretar 
 3. Usando las funciones del paso 1 y 2, crea una función que los repita para cada uno de los puntos de un dataset.
 4. (Extra): Haz celdas que prueben que todas las funciones operen como esperas.
 
-Una vez que lo consigas, puedes comparar con la solución del reto 01 [aquí](Reto01/Reto 01.ipynb)
+Una vez que lo consigas, puedes comparar con la solución del reto 01 [aquí](Reto01/Reto01.ipynb)
 
 ## Entrenamiento de K-means: Obteniendo los centroides
 
@@ -99,7 +99,7 @@ La sesión pasada nos dedicamos a separar datos en entrenamiento y prueba: En es
 
 Una pregunta válida es: "¿Por qué necesitamos salidas de entrenamiento y prueba si el algoritmo es no-supervisado?" Realmente no necesitamos las salidas, pero podemos aprovecharlas para ver qué tan bien se agrupan los datos en clústeres. 
 
-Podemos ver un ejemplo del entrenamiento de K-medias en [este cuaderno](Ejemplo01/Ejemplo 01.ipynb) 
+Podemos ver un ejemplo del entrenamiento de K-medias en [este cuaderno](Ejemplo01/Ejemplo01.ipynb) 
 
 Una vez que hemos entrenado el algoritmo de K-medias y obtuvimos los centroides, vamos a probar que los datos con cada etiqueta estén agrupados en el mismo centroide:
 
