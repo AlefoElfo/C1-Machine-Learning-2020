@@ -14,13 +14,54 @@ Se comenzará por explicar una neurona. Un perceptrón (la neurona más simple).
 - x2
 - x3
 
-Donde cada entrada tendrá un peso, luego se unen, en un proceso, para arrojar un output. Este output sale de acuerdo con un umbral para arrojar 0 o 1.
+![Perceptrón o neurona simple](imgassets/Perceptr%C3%B3nsimple.png)
+
+w = peso de la neurona
+
+Donde cada entrada tendrá un peso, luego se unen, en un proceso, para arrojar un output. Este output sale de acuerdo con un umbral para arrojar 0 o 1. Output = (0 si la suma de x es menor...) o (1 si la suma de x es mayor...)
 
 > Red neuronal. Un conjunto de muchas neuronas conectadas, compartiendo información entre sí y generando conocimiento.
 
-Output = (0 si la suma de x es menor...) o (1 si la suma de x es mayor...)
+Por ejemplo: ¿Voy a ir al festiva? Tendré tres factores y estos no tendrán el mismo peso.
 
+- Clima. Peso de 6
+  - 1
+- Acompañante. Peso de 3
+  - 0
+- Transporte. Peso de 1
+  - 1
 
+(1\*6) + (0\*3) + (1\*1) = 6 + 0 + 6 = 7
+
+7 > b = Output 1. Por lo tanto sí vamos al festivas.
+
+A partir de esto ya tengo la salida. Lo importante es que ya estoy generando un sistema que me permite saber cuándo ir y cuándo no ir al festival.
+
+Ahora, si tomamos 3 perceptrones,donde cada uno recibe 3 entradas, veremos tres salidas. Lo que puedo convertirse en un hiperperceptrón, donde cada perceptrón tiene su propio peso.
+
+![Red neuronal](imgassets/Conjuntoperceptrones.png)
+
+Luego, se van armando capas de neuronas que arrojen resultados a las siguientes capas. En este ejemplo hay dos capas, el primero con 3 neuronas y el segundo con 4, que llevan a una neurona final para tomar una mejor decisión.
+
+La capa más simple de neuronas no tiene relación entre sus neuronas. La relación se da con las siguientes capas.
+
+![Fórmula](imgassets/Formula.png)
+
+La s es un factor de cambio, qué tan grande o chica sea para que dé 0 o 1. Mover tantito las w o la b, puede arrojarnos un resultado totalmente diferente. w y b **tienen mucha sensibilidad**.
+
+Se busca que las neuronas no sean tan volátiles. Si las neuronas son muy parecidas, pero con resultados totalmente diferentes, se ve que hay poca estabilidad. Cada neurona extrae o modela ciertas características. Esto lleva a un resultado volátil, inestable. Por eso se busca minimizar este cambio que pudieran generar estos valores, ya que a cambios pequeños deberían representar cambios pequeños en nuestras neuronas. Esto se logra con un nuevo factor, una función de activación.
+
+![Funció de activación](imgassets/activacionfuncion.png)
+
+Esta función evita que se dispare la volatibilidad en mi red.
+
+Función sigmoidal: sigma(z) = 1/1+e^-z:
+
+![Función sigmoidal](imgassets/sigmoidal.gif)
+
+Si no se suavizara, sería muy sensible y agresivo:
+
+![No sigmoidal](imgassets/nosigmoidal.png)
 
 ## Bienvenida
 
@@ -102,18 +143,29 @@ Para construir una neurona artificial tenemos que crear ese segmento que decida 
 
 ![neurona2](imgassets/artificialneuron1.png)
 
+Bias = b
+
+- b es nuestro factor de cambio, Bias. Qué tanta certeza tenemos de que se pueda acercar a 1
+- Le estamos asociando a nuestras entradas un peso, pero el b nos permite mover la salida independientemente de las entradas
+- Nos ayuda amodelar nuestras salidas
+
 Para ello, lo primero que vamos a construir es una neurona artificial (desde cero). No te preocupes, es bastante sencillo.
 
 ## Reto 01: Crea una neurona artificial
-> Para crear una neurona artificial tienes que completar tres pasos: 
-   - Crea una función llamada "calcularZ", que haga lo siguiente: 
-      **z = calcularZ(pesos,x,bias) = np.dot(pesos,x) + bias**
-   - Luego, haz una función llamada "activacion" que por ahora será temporal y lo que reciba de entrada retornará de salida:
-      **y_prediccion = activacion(z) = z**
-   - Finalmente, haz una función llamada neurona, que una el paso 1 y el 2.
-     **y_prediccion = neurona(activación(calcularZ(pesos,x,bias)))**
-     
-Puedes ver la solución al reto en [este cuaderno.](Reto01/Reto01.ipynb) 
+
+Para crear una neurona artificial tienes que completar tres pasos:
+
+- Crea una función llamada "calcularZ", que haga lo siguiente:
+
+      z = calcularZ(pesos,x,bias) = np.dot(pesos,x) + bias
+- Luego, haz una función llamada "activacion" que por ahora será temporal y lo que reciba de entrada retornará de salida:
+
+      y_prediccion = activacion(z) = z
+- Finalmente, haz una función llamada neurona, que una el paso 1 y el 2.
+
+      y_prediccion = neurona(activación(calcularZ(pesos,x,bias)))
+
+Puedes ver la solución al reto en [este cuaderno.](Reto01/Reto01.ipynb)
 
 Como nota importante, durante esta sesión crearemos una red neuronal desde cero. Sin embargo, al final de la sesión haremos el entrenamiento con SciKit Learn. **Es sumamente importante aprender a construir una red neuronal para entender cómo mejorarla.**
 
@@ -147,6 +199,8 @@ No te preocupes demasiado por las matemáticas; me interesa mas que tengas las n
 ## NumPy y Redes Neuronales
 
 Ahora mismo, con el Reto 01 hemos creado una sola neurona. Sin embargo, una red neuronal en realidad tiene múltiples neuronas e incluso múltiples capas entre las neuronas, como puedes observar en la siguiente imagen:
+
+> z es el output antes de la función de activación
 
 ![neuron layer](imgassets/neuronlayer.png)
 
@@ -197,3 +251,10 @@ En recomendación profesional, te sugiero utilizar las salidas *one-hot* ya que 
 >Con lo aprendido en el ejemplo 04 y 05, construye tu propio clasificador multiclase. Genera blobs de varias clases (por ejemplo, 4 clases diferentes) y crea una estructura neuronal. Te recomiendo poner tantas salidas como clases. Al final, evalúa sumando la diagonal de la matriz de confusión con np.trace
 
 Puedes ver la solución de este reto [aquí.](Reto03/Reto03.ipynb)
+
+
+## Apuntes
+
+Las redes neuronales son mucha experimentación. No hay forma de saber cómo encontrar una estructura adecuada de neuronas, no se puede entender lo que sucede internamente en las capas internas.
+
+Para lograr un buen desempeño necesitamos muchos datos. Las imágenes tienen muchos datos, por eso se usan redes neuronales.
