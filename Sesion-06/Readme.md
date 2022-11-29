@@ -1,8 +1,30 @@
 # Sesión 06: Redes Neuronales Artificiales
 
-#### Objetivo: Construir una red neuronal artificial y entender los procedimientos del algoritmo de descenso en gradiente para predicción y clasificación supervisada.  
+> Objetivo: Construir una red neuronal artificial y entender los procedimientos del algoritmo de descenso en gradiente para predicción y clasificación supervisada.
 
-¡Bienvenido a la sesión 06 del curso de Machine Learning para Bedu Tech! En esta sesión hablaremos acerca de uno de los temas más utilizados y de mayor relevancia en Machine Learning: las redes neuronales artificiales. 
+## Introducción
+
+Esta sección será meramente introductoria. Entender la estructura básica de una red neuronal.
+
+¿Qué es una red neuronal? Todos quieren usarlas. El 50% de las veces no necesitarán una para resolver el problema. Hay muchos acercamientos.
+
+Se comenzará por explicar una neurona. Un perceptrón (la neurona más simple). Hay 3 entredas y mediante esas entradas, las conectaré para llegar a una salida:
+
+- x1
+- x2
+- x3
+
+Donde cada entrada tendrá un peso, luego se unen, en un proceso, para arrojar un output. Este output sale de acuerdo con un umbral para arrojar 0 o 1.
+
+> Red neuronal. Un conjunto de muchas neuronas conectadas, compartiendo información entre sí y generando conocimiento.
+
+Output = (0 si la suma de x es menor...) o (1 si la suma de x es mayor...)
+
+
+
+## Bienvenida
+
+¡Bienvenido a la sesión 06 del curso de Machine Learning para Bedu Tech! En esta sesión hablaremos acerca de uno de los temas más utilizados y de mayor relevancia en Machine Learning: las redes neuronales artificiales.
 
 En sesiones anteriores hemos creado algoritmos de clusterización, algoritmos predictivos con un regresor lineal y algoritmos de clasificación y predicción con Random Forests. Pero enfoquémonos un poco en el regresor lineal: Para recordar, vimos que un regresor lineal puede construir funciones con múltiples entradas para darte una salida.
 
