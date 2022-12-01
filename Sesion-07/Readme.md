@@ -73,7 +73,7 @@ Igualmente, hemos visto cómo funcionan las redes neuronales artificiales. La me
 - Con pocos datos, es posible que caigas en *overfitting* fácilmente. Necesitas tener un buen volumen de datos de pruebas para tener buenos resultados. 
 - El entrenamiento puede ser lento si tu red neuronal no está lo suficientemente optimizada. 
 
-***¿Cuándo es buena idea utilizar un Random Forest?***
+***¿Cuándo es buena idea utilizar un red neuronal (antes Random forest)?***
 - Cuando las variables de entrada parezcan no tener una correlación clara con los datos de salida. La red neuronal podría encontrar esas correlaciones ocultas con los pesos sinápticos. 
 - Cuando requieras alta precisión o extender el sistema que creas a múltiples datos diferentes. 
 
@@ -147,3 +147,8 @@ Puedes ver un ejemplo de cómo se implementa [Naïve Bayes aqui.](Ejemplo02/Ejem
 > ¿Puedes añadir el clasificador Naïve Bayes para comparar a todos? Compáralos con algún dataset que tengas (o en su defecto con blobs...) y enuncia quién es el ganador en cada una de las rúbricas (como en el reto 02). MUY IMPORTANTE: Recuerda utilizar el mismo dataset de entrenamiento para todos los clasificadores y el mismo dataset de prueba, para asegurarte de que es una competencia justa. 
 
 [Resultado del Reto 03 aquí.](Reto03/Reto03.ipynb)
+
+## Evaluar nuestra arena de clasificadores
+
+- Datos de entrenamiento y pruebas
+- Matrices de confusión
