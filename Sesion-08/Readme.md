@@ -14,11 +14,22 @@ Los datos *estructurados* son aquellos que se encuentran perfectamente ordenados
 
 Sin embargo, ¿que pasa si solamente tienes una cámara apuntando al cielo? La predicción del clima ya no es tan sencilla, tienes que encontrar una manera de relacionar el estado del clima con los cuadros de video que estás observando. Esto se vuelve muchísimo más complejo. 
 
-Esta clase de datos que no se pueden colocar directamente en una base de datos o una tabla, se le conocen com *datos no estructurados*. Lamentablemente se estima que el **80%** de todos los datos existentes en el mundo son no-estructurados. 
+Esta clase de datos que no se pueden colocar directamente en una base de datos o una tabla, se le conocen com *datos no estructurados*. Lamentablemente se estima que el **80%** de todos los datos existentes en el mundo son no-estructurados.
+
+La imagen debajo no son datos estructurados, por ejemplo. Los datos estructurados se pueden almacenar en una tabla, en una base de datos, si no, no es estructurado.
 
 ![Estructurados vs no estructurados](imgassets/structured.png)
 
-Como puedes intuir, no es fácil para una máquina entender qué es lo que hay en una imagen: Las computadoras no reconocen (al menos directamente) formas o inclusive imágenes - para ellas, una imagen no es más que una matriz de valores numéricos. 
+Otros ejemplos:
+
+- Imágenes
+- Vídeos
+- Audio
+- PDF
+
+Son los archivos que más tenemos. Es más común compartir un PDF que una tabla, o un valor numérico o una fecha. Es muy difícil entender, para una computadora, lo que hay una imagen.
+
+Como puedes intuir, no es fácil para una máquina entender qué es lo que hay en una imagen: Las computadoras no reconocen (al menos directamente) formas o inclusive imágenes - para ellas, una imagen no es más que una matriz de valores numéricos.
 
 Por ello, los programas que haremos intentarán transformar las imágenes (que no son otra cosa que matrices) en datos que tengan sentido y sean clasificables para algoritmos de Machine Learning. Este problema de transformar datos numéricos sin sentido aparente a datos que puedan ser clasificables, se le conoce como *cerrar la brecha semántica*.
 
@@ -33,6 +44,8 @@ Una imagen digital está compuesta de píxeles en tres colores diferentes: Rojo,
 ![pixeles en una pantalla](imgassets/pixels.png)
 
 Una imagen **no es lo mismo** que un archivo de imagen. Las imágenes suelen ser enormes y los archivos de imagen tienen avanzadas técnicas de compresión para evitar llenar tu teléfono. Por ejemplo: un celular estándar puede capturar imágenes de 3264 x 1632 pixeles (con una cámara de 6 megapixeles). Si cada pixel necesita 3 bytes, el total del tamaño es de 15.24 Mb para **una sola imagen.**
+
+Una imagen es un conjunto de tres matrices: Matriz de rojo, de verde y azul. O puede ser donde cada pixel sea un vector de 3 matrices.
 
 Como puedes intuir, las imágenes no se guardan con los bytes puros como fueron capturados. Son comprimidas en archivos JPG, PNG y otros, que la reducen lo más posible y en algunos casos la compresión puede ser perfecta (sin pérdida alguna de calidad). 
 
